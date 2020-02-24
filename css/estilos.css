@@ -1,0 +1,14 @@
+.contendor-galeria{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 1000px;
+}
+
+.galeria__img{
+    width: 600px;
+    height: 500px;
+    margin: 10px;
+}
