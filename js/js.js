@@ -1,17 +1,21 @@
 
+var pagina = 1;
+var maxImg = "";
+var maxPag = "";
+var fotos = '';
+
 function gatos(){
-    var numeros = document.getElementById("num").value;
+  pagina = 1;
     var xhr = new XMLHttpRequest();
     document.getElementById("res").innerHTML = '';
-    xhr.open("GET", "https://api.thecatapi.com/v1/images/search?category_ids="+categoriasInput.value+'&breed_ids='+razasInput.value+'&limit='+numeros, true);
+    xhr.open("GET", "https://api.thecatapi.com/v1/images/search?api_key=d34ac1ef-a539-4ed2-931d-993dad1ca3af&category_ids="+categoriasInput.value+'&breed_ids='+razasInput.value+'&limit=100', true);
     xhr.send();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
             var datos = JSON.parse(xhr.responseText);
-            for (let i = 0; i < numeros; i++){
-                var html = '<img src="' + datos[i]["url"] + '" class="galeria__img">';
-                document.getElementById("res").innerHTML += html;
-            }
+            maxImg = xhr.getResponseHeader("Pagination-Count");
+            fotos = datos;
+            paginar();
         }else{
             console.log("ERROR");
         }
@@ -69,3 +73,40 @@ var getJSON = function(url) {
       console.log("ERROR");
     }
   );
+
+
+function paginar(){
+  document.getElementById("paginaAct").innerHTML = pagina;
+  var numeros = document.getElementById('num').value;
+  maxPag = (maxImg/numeros).toFixed(0) - 1;
+  var mostrado = numeros*pagina;
+
+  if(maxPag == pagina){
+    document.getElementById('sig').style.display = 'none';
+  }else{
+    document.getElementById('sig').style.display = 'inline-block';
+  }
+  if(pagina == 1){
+     document.getElementById('ant').style.display = 'none';
+  }else{
+    document.getElementById('ant').style.display = 'inline-block';
+  }
+
+  document.getElementById('res').innerHTML = '';
+
+  for( let i = mostrado-numeros; i < mostrado; i++){
+    let imag = "<img class='galeria__img' src='"+fotos[i]["url"]+"'>";
+    document.getElementById('res').innerHTML += imag;
+
+  }
+
+}
+
+function pagAnt(){
+  pagina -=  1;
+  paginar()
+}
+function pagSig(){
+  pagina += 1;
+  paginar();
+}

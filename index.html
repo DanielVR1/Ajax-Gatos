@@ -32,24 +32,10 @@ Selecciona el número de imagenes que quieres:
 <div class="contenedor-galeria">
 <div id="res"></div>
 </div>
-<div class="container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#" onclick="gatos()">1</a></li>
-          <li class="page-item"><a class="page-link" href="#" onclick="gatos()">2</a></li>
-          <li class="page-item"><a class="page-link" href="#" onclick="gatos()">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+<div>
+  <button id="ant" onclick="pagAnt()" class="btn btn-primary" style="display: none">Anterior</button>
+  <span id="paginaAct"></span>
+  <button id="sig" onclick="pagSig()" class="btn btn-primary" style="display: none">Siguiente</button>
 </div>
 </center>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
