@@ -1,8 +1,9 @@
 
-var pagina = 1;
+var pagina = 0;
 var maxImg = "";
 var maxPag = "";
 var fotos = '';
+var TotalFotos;
 
 function gatos(){
   pagina = 1;
@@ -14,6 +15,8 @@ function gatos(){
         if(xhr.readyState == 4 && xhr.status == 200){
             var datos = JSON.parse(xhr.responseText);
             maxImg = xhr.getResponseHeader("Pagination-Count");
+            document.getElementById("pagTot").innerHTML = xhr.getResponseHeader("Pagination-Count");
+            TotalFotos = xhr.getResponseHeader("Pagination-Count");
             fotos = datos;
             paginar();
         }else{
@@ -21,6 +24,7 @@ function gatos(){
         }
     }
 }
+
 const urlCategorias ="https://api.thecatapi.com/v1/categories";
 const urlRazas ="https://api.thecatapi.com/v1/breeds";
 const categoriasInput = document.getElementById("categorias");
@@ -35,7 +39,7 @@ var getJSON = function(url) {
         var status = xhr.status;
         if (status == 200) {
           resolve(xhr.response);
-        } else {
+        }else {
           reject(status);
           console.log("ERROR");
         }
@@ -43,7 +47,7 @@ var getJSON = function(url) {
       xhr.send();
     });
   };
-  
+
   //CATEGORIAS
   getJSON(urlCategorias).then(
     function(data) {
@@ -74,14 +78,21 @@ var getJSON = function(url) {
     }
   );
 
+  //Sacamos el numero de paginas totales
+  totalPaginas = () =>{
+
+    var h = TotalFotos/document.getElementById("num").value;
+    h = Math.ceil(h);
+    return h;
+  }
 
 function paginar(){
-  document.getElementById("paginaAct").innerHTML = pagina;
   var numeros = document.getElementById('num').value;
-  maxPag = (maxImg/numeros).toFixed(0) - 1;
   var mostrado = numeros*pagina;
+  document.getElementById("paginaAct").innerHTML = pagina+"/"+totalPaginas();
+  maxPag = (maxImg/numeros).toFixed(0) + 1;
 
-  if(maxPag == pagina){
+  if(pagina == totalPaginas()){
     document.getElementById('sig').style.display = 'none';
   }else{
     document.getElementById('sig').style.display = 'inline-block';

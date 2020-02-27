@@ -28,14 +28,15 @@ Selecciona el número de imagenes que quieres:
 </select>
 <button type="submit" id="enviar" onclick="gatos()">Buscar</button>
 </div>
-<br><br><br>
+Resultados encontrados: <a id="pagTot"></a>
+<br><br>
 <div class="contenedor-galeria">
 <div id="res"></div>
 </div>
 <div>
-  <button id="ant" onclick="pagAnt()" class="btn btn-primary" style="display: none">Anterior</button>
+  <button id="ant" onclick="pagAnt()" class="btn btn-primary" style="display: none">&laquo;</button>
   <span id="paginaAct"></span>
-  <button id="sig" onclick="pagSig()" class="btn btn-primary" style="display: none">Siguiente</button>
+  <button id="sig" onclick="pagSig()" class="btn btn-primary" style="display: none">&raquo;</button>
 </div>
 </center>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
