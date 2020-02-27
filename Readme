@@ -5,3 +5,7 @@ Tecnologias Utilizadas:
 APIs Utilizadas:
 
   ·En esta práctica hemos utiliza una API la cual nos ofrece la opcion de poder crear una galeria de imagenes mediante las peticiones AJAX.
+
+IMPORTANTE:
+- Debido a limitaciones de la API solo puedes coger 100 imagenes.
+- Aunque "xhr.getResponseHeader("Pagination-Count");" devuelve 8000 (imagenes) la API tan solo devuelve 100.
